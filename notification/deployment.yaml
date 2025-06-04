@@ -1,0 +1,51 @@
+# notification-service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification-service
+  template:
+    metadata:
+      labels:
+        app: notification-service
+    spec:
+      containers:
+        - name: notification-service
+          image: nye0817/al2m:notification-service
+          command: ["python", "manage.py", "runserver", "0.0.0.0:8005"]
+          ports:
+            - containerPort: 8005
+          envFrom:
+            - configMapRef:
+                name: notification-config
+            - secretRef:
+                name: notification-secret
+---
+# notification-worker
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notification-worker
+  template:
+    metadata:
+      labels:
+        app: notification-worker
+    spec:
+      containers:
+        - name: notification-worker
+          image: nye0817/al2m:notification-service
+          command: ["celery", "-A", "notification_service", "worker", "--loglevel=info", "--pool=solo", "-Q", "notification_queue"]
+          envFrom:
+            - configMapRef:
+                name: notification-config
+            - secretRef:
+                name: notification-secret

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: routine-config
+data:
+  DEBUG: "True"
+  DB_NAME: routine_db
+  DB_USER: postgres
+  DB_HOST: postgres-service
+  DB_PORT: "5432"
+  PORT: "8003"
+  RABBITMQ_HOST: rabbitmq-service
+  RABBITMQ_PORT: "5672"

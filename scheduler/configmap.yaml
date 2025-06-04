@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: scheduler-config
+data:
+  DEBUG: "True"
+  DB_NAME: scheduler
+  DB_USER: postgres
+  DB_HOST: postgres-service
+  DB_PORT: "5432"
+  PORT: "8004"
+  ROUTINE_SERVICE_URL: http://routine-service:8003/api/routines/today/
+  NOTIFICATION_SERVICE_URL: http://notification-service:8005/notify/email/
+  RABBITMQ_HOST: rabbitmq-service
+  RABBITMQ_PORT: "5672"

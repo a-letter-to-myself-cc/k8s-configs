@@ -1,0 +1,24 @@
+# scheduler-worker
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scheduler-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scheduler-worker
+  template:
+    metadata:
+      labels:
+        app: scheduler-worker
+    spec:
+      containers:
+        - name: scheduler-worker
+          image: nye0817/al2m:scheduler-service
+          command: ["celery", "-A", "scheduler_service", "worker", "--loglevel=info", "--pool=solo", "-Q", "scheduler_queue"]
+          envFrom:
+            - configMapRef:
+                name: scheduler-config
+            - secretRef:
+                name: scheduler-secret

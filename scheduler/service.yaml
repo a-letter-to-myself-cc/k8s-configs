@@ -1,0 +1,87 @@
+# scheduler-service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scheduler-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scheduler-service
+  template:
+    metadata:
+      labels:
+        app: scheduler-service
+    spec:
+      containers:
+        - name: scheduler-service
+          image: nye0817/al2m:scheduler-service
+          ports:
+            - containerPort: 8004
+          envFrom:
+            - configMapRef:
+                name: scheduler-config
+            - secretRef:
+                name: scheduler-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scheduler-service
+spec:
+  selector:
+    app: scheduler-service
+  ports:
+    - port: 8004
+      targetPort: 8004
+  type: ClusterIP
+---
+# scheduler-worker
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scheduler-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scheduler-worker
+  template:
+    metadata:
+      labels:
+        app: scheduler-worker
+    spec:
+      containers:
+        - name: scheduler-worker
+          image: nye0817/al2m:scheduler-service
+          command: ["celery", "-A", "scheduler_service", "worker", "--loglevel=info", "--pool=solo", "-Q", "scheduler_queue"]
+          envFrom:
+            - configMapRef:
+                name: scheduler-config
+            - secretRef:
+                name: scheduler-secret
+---
+# scheduler-beat
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scheduler-beat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scheduler-beat
+  template:
+    metadata:
+      labels:
+        app: scheduler-beat
+    spec:
+      containers:
+        - name: scheduler-beat
+          image: nye0817/al2m:scheduler-service
+          command: ["celery", "-A", "scheduler_service", "beat", "--loglevel=info"]
+          envFrom:
+            - configMapRef:
+                name: scheduler-config
+            - secretRef:
+                name: scheduler-secret

@@ -1,0 +1,25 @@
+# scheduler-service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scheduler-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scheduler-service
+  template:
+    metadata:
+      labels:
+        app: scheduler-service
+    spec:
+      containers:
+        - name: scheduler-service
+          image: nye0817/al2m:scheduler-service
+          ports:
+            - containerPort: 8004
+          envFrom:
+            - configMapRef:
+                name: scheduler-config
+            - secretRef:
+                name: scheduler-secret

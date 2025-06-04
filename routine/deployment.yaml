@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: routine-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: routine-service
+  template:
+    metadata:
+      labels:
+        app: routine-service
+    spec:
+      containers:
+        - name: routine-service
+          image: nye0817/al2m:routine-service
+          ports:
+            - containerPort: 8003
+          envFrom:
+            - configMapRef:
+                name: routine-config
+            - secretRef:
+                name: routine-secret

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: user-config
+data:
+  DEBUG: "True"
+  DB_NAME: user-db
+  DB_USER: postgres
+  DB_HOST: postgres-service
+  DB_PORT: "5432"
+  PORT: "8002"
