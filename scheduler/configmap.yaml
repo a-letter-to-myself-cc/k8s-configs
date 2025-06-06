@@ -11,5 +11,6 @@ data:
   PORT: "8004"
   ROUTINE_SERVICE_URL: http://routine-service:8003/api/routines/today/
   NOTIFICATION_SERVICE_URL: http://notification-service:8005/notify/email/
+  CELERY_BROKER_URL: amqp://guest:guest@rabbitmq-service:5672//
   RABBITMQ_HOST: rabbitmq-service
   RABBITMQ_PORT: "5672"
