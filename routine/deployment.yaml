@@ -22,3 +22,15 @@ spec:
                 name: routine-config
             - secretRef:
                 name: routine-secret
+          livenessProbe:
+            httpGet:
+              path: /health/
+              port: 8003
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health/
+              port: 8003
+            initialDelaySeconds: 5
+            periodSeconds: 5
