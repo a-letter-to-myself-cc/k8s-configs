@@ -24,6 +24,19 @@ spec:
                 name: notification-config
             - secretRef:
                 name: notification-secret
+          livenessProbe:
+            httpGet:
+              path: /health/
+              port: 8005
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health/
+              port: 8005
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          imagePullPolicy: Always
 ---
 # notification-worker
 apiVersion: apps/v1

@@ -23,3 +23,16 @@ spec:
                 name: scheduler-config
             - secretRef:
                 name: scheduler-secret
+          livenessProbe:
+            httpGet:
+              path: /health/
+              port: 8004
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health/
+              port: 8004
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          imagePullPolicy: Always
