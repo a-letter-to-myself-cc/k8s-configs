@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: scheduler-service
-          image: nye0817/al2m:scheduler-service
+          image: nye0817/al2m-scheduler-service:v2
           ports:
             - containerPort: 8004
           envFrom:

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: scheduler-worker
-          image: nye0817/al2m:scheduler-service
+          image: nye0817/al2m-scheduler-service:v2
           command: ["celery", "-A", "scheduler_service", "worker", "--loglevel=info", "--pool=solo", "-Q", "scheduler_queue"]
           envFrom:
             - configMapRef:

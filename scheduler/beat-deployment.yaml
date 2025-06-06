@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: scheduler-beat
-          image: nye0817/al2m:scheduler-service
+          image: nye0817/al2m-scheduler-service:v2
           command: ["celery", "-A", "scheduler_service", "beat", "--loglevel=info"]
           envFrom:
             - configMapRef:

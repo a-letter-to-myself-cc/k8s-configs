@@ -5,7 +5,7 @@ metadata:
 data:
   init.sql: |
     CREATE DATABASE auth_db;
-    CREATE DATABASE user_db;
+    CREATE DATABASE user-db;
     CREATE DATABASE routine_db;
     CREATE DATABASE letter_db;
     CREATE DATABASE letter_storage_db;
