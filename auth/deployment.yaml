@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: nye0817/al2m:auth-service
+          image: nye0817/al2m-auth-service
           ports:
             - containerPort: 8001
           envFrom:

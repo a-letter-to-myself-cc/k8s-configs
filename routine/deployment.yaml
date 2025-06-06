@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: routine-service
-          image: nye0817/al2m:routine-service
+          image: nye0817/al2m-routine-service
           ports:
             - containerPort: 8003
           envFrom:

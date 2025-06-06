@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: notification-service
-          image: nye0817/al2m:notification-service
+          image: nye0817/al2m-notification-service
           command: ["python", "manage.py", "runserver", "0.0.0.0:8005"]
           ports:
             - containerPort: 8005
@@ -55,7 +55,7 @@ spec:
     spec:
       containers:
         - name: notification-worker
-          image: nye0817/al2m:notification-service
+          image: nye0817/al2m-notification-service
           command: ["celery", "-A", "notification_service", "worker", "--loglevel=info", "--pool=solo", "-Q", "notification_queue"]
           envFrom:
             - configMapRef:

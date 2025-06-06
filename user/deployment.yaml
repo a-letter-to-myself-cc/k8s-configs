@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: nye0817/al2m:user-service
+          image: nye0817/al2m-user-service
           ports:
             - containerPort: 8002
           envFrom:
