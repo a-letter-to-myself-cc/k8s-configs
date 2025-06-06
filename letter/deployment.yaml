@@ -16,7 +16,7 @@ spec:
         - name: letter-service
           image: nye0817/al2m:letter-service  # Docker Hub에 올린 이미지 이름
           ports:
-            - containerPort: 8000
+            - containerPort: 8006
           envFrom:
             - configMapRef:
                 name: letter-config
@@ -28,13 +28,13 @@ spec:
           livenessProbe:
             httpGet:
               path: /health/
-              port: 8000
+              port: 8006
             initialDelaySeconds: 10
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /health/
-              port: 8000
+              port: 8006
             initialDelaySeconds: 5
             periodSeconds: 5
           imagePullPolicy: Always
