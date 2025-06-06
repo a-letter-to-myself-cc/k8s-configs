@@ -10,6 +10,6 @@ data:
   DB_PORT: "5432"
   PORT: "8004"
   ROUTINE_SERVICE_URL: http://routine-service:8003/api/routines/today/
-  NOTIFICATION_SERVICE_URL: http://notification-service:8005/notify/email/
+  NOTIFICATION_SERVICE_URL: http://notification_service:8005/notify/email/
   RABBITMQ_HOST: rabbitmq-service
   RABBITMQ_PORT: "5672"
