@@ -19,8 +19,6 @@ spec:
           ports:
             - containerPort: 5432
           env:
-            - name: POSTGRES_DB
-              value: main  # 사용 안 해도 됨. 각 서비스가 다른 DB에 연결하니까
             - name: POSTGRES_USER
               value: postgres
             - name: POSTGRES_PASSWORD
@@ -31,9 +29,14 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: pgdata
+            - name: init-script-volume
+              mountPath: /docker-entrypoint-initdb.d  # 여기에 init.sql 넣으면 자동 실행
       volumes:
         - name: pgdata
           emptyDir: {}
+        - name: init-script-volume
+          configMap:
+            name: postgres-init-script
 ---
 apiVersion: v1
 kind: Secret
