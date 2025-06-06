@@ -22,3 +22,16 @@ spec:
                 name: user-config
             - secretRef:
                 name: user-secret
+          livenessProbe:
+            httpGet:
+              path: /health/
+              port: 8002
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health/
+              port: 8002
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          imagePullPolicy: Always
