@@ -6,13 +6,13 @@ data:
   DEBUG: "True"
   DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1,letters-service"
   POSTGRES_DB_FOR_LETTERS_SVC: letters_db
-  POSTGRES_USER_FOR_LETTERS_SVC: ""
+  POSTGRES_USER_FOR_LETTERS_SVC: postgres
   DB_ENGINE: django.db.backends.postgresql
-  DB_NAME: a_letter_to_myself
+  DB_NAME: letters_db
   DB_USER: postgres
-  DB_HOST: host.docker.internal
+  DB_HOST: postgres-service
   DB_PORT: "5432"
-  RABBITMQ_HOST: rabbitmq
+  RABBITMQ_HOST: rabbitmq-service
   RABBITMQ_PORT: "5672"
   RABBITMQ_VHOST: /
   RABBITMQ_USER: guest
