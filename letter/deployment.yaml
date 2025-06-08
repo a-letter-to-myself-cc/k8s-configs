@@ -14,31 +14,30 @@ spec:
     spec:
       containers:
         - name: letter-service
-          image: hyomee2/letter-service:latest # Docker Hub에 올린 이미지 이름
-          imagePullPolicy: Always
+          image: jimin07/letter-service:v5  # Docker Hub에 올린 이미지 이름
           ports:
-            - containerPort: 8006
+            - containerPort: 8000 # 내부 포트
           envFrom:
             - configMapRef:
                 name: letter-config
             - secretRef:
                 name: letter-secret
-          volumeMounts:
-            - name: letter-storage
-              mountPath: /app 
+          # volumeMounts:
+          #   - name: letter-storage
+          #     mountPath: /app/media # 덮어쓰지 않도록 수정
           livenessProbe:
             httpGet:
               path: /health/
-              port: 8006
-            initialDelaySeconds: 10
+              port: 8000 # 내부 포트
+            initialDelaySeconds: 30
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /health/
-              port: 8006
+              port: 8000 # 내부 포트
             initialDelaySeconds: 5
             periodSeconds: 5
           imagePullPolicy: Always
-      volumes:
-        - name: letter-storage
-          emptyDir: {}  # 필요 시 PVC로 교체 가능
+      # volumes:
+      #   - name: letter-storage
+      #     emptyDir: {}  # 필요 시 PVC로 교체 가능
