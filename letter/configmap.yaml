@@ -16,6 +16,6 @@ data:
   RABBITMQ_PORT: "5672"
   RABBITMQ_VHOST: /
   RABBITMQ_USER: guest
-  LETTER_STORAGE_SERVICE_BASE_URL: "http://letter-storage-service:80"
+  LETTER_STORAGE_SERVICE_BASE_URL: "http://letter-storage-service:8007"
   AUTH_SERVICE_URL: "http://auth-service:8001/auth"
   AUTH_TOKEN_VERIFY_ENDPOINT: "/internal/verify/"

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: letter-storage-service
-          image: hyomee2/letter-storage-service:latest
+          image: hyomee2/letter-storage-service:20250607-064403
           ports:
           - containerPort: 8007
           envFrom:
