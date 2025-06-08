@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: letter-service
-          image: jimin07/letter-service:v5  # Docker Hub에 올린 이미지 이름
+          image: hyomee2/letter-service:v1  # Docker Hub에 올린 이미지 이름
           ports:
-            - containerPort: 8000 # 내부 포트
+            - containerPort: 8006 # 내부 포트
           envFrom:
             - configMapRef:
                 name: letter-config
@@ -28,13 +28,13 @@ spec:
           livenessProbe:
             httpGet:
               path: /health/
-              port: 8000 # 내부 포트
+              port: 8006 # 내부 포트
             initialDelaySeconds: 30
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /health/
-              port: 8000 # 내부 포트
+              port: 8006 # 내부 포트
             initialDelaySeconds: 5
             periodSeconds: 5
           imagePullPolicy: Always
