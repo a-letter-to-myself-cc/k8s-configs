@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: api-gateway
-        image: yeoncheong08/al2m-api-gateway:latest  # Docker Hub에 올린 이미지 이름
+        image: nye0817/al2m-api-gateway:latest  # Docker Hub에 올린 이미지 이름
         ports:
         - containerPort: 80
         env:

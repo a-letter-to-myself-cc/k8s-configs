@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: web-client
-        image: yeoncheong08/al2m-web-client # Docker Hub에 올린 이미지 이름
+        image: nye0817/al2m-web-client # Docker Hub에 올린 이미지 이름
         ports:
         - containerPort: 80
         env:
