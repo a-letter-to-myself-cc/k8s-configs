@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: letter-service
-          image: hyomee2/letter-service:v1  # Docker Hub에 올린 이미지 이름
+          image: nye0817/al2m-letter-service  # Docker Hub에 올린 이미지 이름
           ports:
             - containerPort: 8006 # 내부 포트
           envFrom:
